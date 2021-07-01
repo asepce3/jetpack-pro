@@ -1,4 +1,4 @@
-package com.movie.academy.home
+package com.movie.academy.ui.home
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

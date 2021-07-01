@@ -11,13 +11,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Academy">
-        <activity android:name=".home.HomeActivity"></activity>
+        <activity android:name="com.movie.academy.ui.home.HomeActivity"></activity>
         <activity android:name=".detail.DetailCourseActivity"
-            android:parentActivityName=".home.HomeActivity"
+            android:parentActivityName="com.movie.academy.ui.home.HomeActivity"
             android:theme="@style/Theme.Design.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".home.HomeActivity" />
+                android:value="com.movie.academy.ui.home.HomeActivity" />
         </activity>
         <activity android:name=".reader.CourseReaderActivity" />
         <activity android:name=".MainActivity">
