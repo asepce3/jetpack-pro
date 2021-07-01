@@ -14,7 +14,7 @@
         <activity android:name=".home.HomeActivity"></activity>
         <activity android:name=".detail.DetailCourseActivity"
             android:parentActivityName=".home.HomeActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/Theme.Design.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".home.HomeActivity" />
