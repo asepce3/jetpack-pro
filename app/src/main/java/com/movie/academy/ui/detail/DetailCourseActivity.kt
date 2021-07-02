@@ -3,6 +3,7 @@ package com.movie.academy.ui.detail
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -13,7 +14,6 @@ import com.movie.academy.data.CourseEntity
 import com.movie.academy.databinding.ActivityDetailCourseBinding
 import com.movie.academy.databinding.ContentDetailCourseBinding
 import com.movie.academy.ui.reader.CourseReaderActivity
-import com.movie.academy.utils.DataDummy
 
 class DetailCourseActivity : AppCompatActivity() {
 
@@ -33,17 +33,16 @@ class DetailCourseActivity : AppCompatActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        val viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[DetailCourseViewModel::class.java]
         val adapter = DetailCourseAdapter()
         val extras = intent.extras
         if (extras != null) {
             val courseId = extras.getString(EXTRA_COURSE)
             if (courseId != null) {
-                val modules = DataDummy.generateDummyModules(courseId)
+                viewModel.setSelectedCourse(courseId)
+                val modules = viewModel.getModules()
                 adapter.setModules(modules)
-                for (course in DataDummy.generateDummyCourses()) {
-                    if (course.courseId == courseId)
-                        populateCourse(course)
-                }
+                populateCourse(viewModel.getCourse())
             }
         }
 

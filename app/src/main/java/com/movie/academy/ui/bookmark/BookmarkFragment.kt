@@ -6,11 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.app.ShareCompat
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.movie.academy.R
 import com.movie.academy.data.CourseEntity
 import com.movie.academy.databinding.FragmentBookmarkBinding
-import com.movie.academy.utils.DataDummy
 
 class BookmarkFragment : Fragment(), BookmarkFragmentCallback {
 
@@ -27,7 +27,8 @@ class BookmarkFragment : Fragment(), BookmarkFragmentCallback {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if (activity != null) {
-            val courses = DataDummy.generateDummyCourses()
+            val viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[BookmarkViewModel::class.java]
+            val courses = viewModel.getBookmarks()
             val adapter = BookmarkAdapter(this)
             adapter.setCourses(courses)
 

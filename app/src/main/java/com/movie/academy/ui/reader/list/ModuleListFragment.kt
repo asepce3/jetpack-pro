@@ -6,13 +6,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.movie.academy.data.ModuleEntity
 import com.movie.academy.databinding.FragmentModuleListBinding
 import com.movie.academy.ui.reader.CourseReaderActivity
 import com.movie.academy.ui.reader.CourseReaderCallback
-import com.movie.academy.utils.DataDummy
+import com.movie.academy.ui.reader.CourseReaderViewModel
 
 class ModuleListFragment : Fragment(), MyAdapterClickListener {
 
@@ -22,6 +23,7 @@ class ModuleListFragment : Fragment(), MyAdapterClickListener {
         fun newInstance(): ModuleListFragment = ModuleListFragment()
     }
 
+    private lateinit var viewModel: CourseReaderViewModel
     private lateinit var fragmentModuleListBinding: FragmentModuleListBinding
     private lateinit var adapter: ModuleListAdapter
     private lateinit var courseReaderCallback: CourseReaderCallback
@@ -35,8 +37,10 @@ class ModuleListFragment : Fragment(), MyAdapterClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        viewModel = ViewModelProvider(requireActivity(), ViewModelProvider.NewInstanceFactory())[CourseReaderViewModel::class.java]
         adapter = ModuleListAdapter(this)
-        populateRecyclerView(DataDummy.generateDummyModules("a14"))
+        populateRecyclerView(viewModel.getModules())
     }
 
     override fun onAttach(context: Context) {
@@ -45,6 +49,7 @@ class ModuleListFragment : Fragment(), MyAdapterClickListener {
     }
 
     override fun onItemClicked(position: Int, moduleId: String) {
+        viewModel.setSelectedModule(moduleId)
         courseReaderCallback.moveTo(position, moduleId)
     }
 
