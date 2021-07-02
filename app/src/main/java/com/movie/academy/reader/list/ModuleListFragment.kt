@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.movie.academy.R
 import com.movie.academy.data.ModuleEntity
 import com.movie.academy.databinding.FragmentModuleListBinding
 import com.movie.academy.reader.CourseReaderActivity

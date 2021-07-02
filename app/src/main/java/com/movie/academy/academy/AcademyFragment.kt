@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.movie.academy.R
 import com.movie.academy.databinding.FragmentAcademyBinding
 import com.movie.academy.utils.DataDummy
 

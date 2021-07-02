@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.movie.academy.R
 import com.movie.academy.data.ContentEntity
 import com.movie.academy.databinding.FragmentModuleContentBinding
 
