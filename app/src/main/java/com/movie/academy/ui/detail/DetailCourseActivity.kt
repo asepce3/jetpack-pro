@@ -1,4 +1,4 @@
-package com.movie.academy.detail
+package com.movie.academy.ui.detail
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -12,7 +12,7 @@ import com.movie.academy.R
 import com.movie.academy.data.CourseEntity
 import com.movie.academy.databinding.ActivityDetailCourseBinding
 import com.movie.academy.databinding.ContentDetailCourseBinding
-import com.movie.academy.reader.CourseReaderActivity
+import com.movie.academy.ui.reader.CourseReaderActivity
 import com.movie.academy.utils.DataDummy
 
 class DetailCourseActivity : AppCompatActivity() {

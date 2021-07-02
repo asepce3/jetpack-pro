@@ -1,10 +1,10 @@
-package com.movie.academy.reader
+package com.movie.academy.ui.reader
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.movie.academy.R
-import com.movie.academy.reader.content.ModuleContentFragment
-import com.movie.academy.reader.list.ModuleListFragment
+import com.movie.academy.ui.reader.content.ModuleContentFragment
+import com.movie.academy.ui.reader.list.ModuleListFragment
 
 class CourseReaderActivity : AppCompatActivity(), CourseReaderCallback {
 

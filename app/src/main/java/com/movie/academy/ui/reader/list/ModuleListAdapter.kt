@@ -1,4 +1,4 @@
-package com.movie.academy.reader.list
+package com.movie.academy.ui.reader.list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

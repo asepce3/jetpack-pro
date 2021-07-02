@@ -1,4 +1,4 @@
-package com.movie.academy.reader.list
+package com.movie.academy.ui.reader.list
 
 import android.content.Context
 import android.os.Bundle
@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.movie.academy.data.ModuleEntity
 import com.movie.academy.databinding.FragmentModuleListBinding
-import com.movie.academy.reader.CourseReaderActivity
-import com.movie.academy.reader.CourseReaderCallback
+import com.movie.academy.ui.reader.CourseReaderActivity
+import com.movie.academy.ui.reader.CourseReaderCallback
 import com.movie.academy.utils.DataDummy
 
 class ModuleListFragment : Fragment(), MyAdapterClickListener {

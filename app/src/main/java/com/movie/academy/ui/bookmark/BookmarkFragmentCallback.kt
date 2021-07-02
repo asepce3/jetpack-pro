@@ -1,4 +1,4 @@
-package com.movie.academy.bookmark
+package com.movie.academy.ui.bookmark
 
 import com.movie.academy.data.CourseEntity
 

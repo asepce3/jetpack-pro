@@ -6,8 +6,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.movie.academy.R
-import com.movie.academy.academy.AcademyFragment
-import com.movie.academy.bookmark.BookmarkFragment
+import com.movie.academy.ui.academy.AcademyFragment
+import com.movie.academy.ui.bookmark.BookmarkFragment
 
 class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
     FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {

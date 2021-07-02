@@ -1,4 +1,4 @@
-package com.movie.academy.bookmark
+package com.movie.academy.ui.bookmark
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

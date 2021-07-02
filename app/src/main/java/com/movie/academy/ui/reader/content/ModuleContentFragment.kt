@@ -1,4 +1,4 @@
-package com.movie.academy.reader.content
+package com.movie.academy.ui.reader.content
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
