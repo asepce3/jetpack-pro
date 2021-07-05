@@ -1,12 +1,19 @@
 package com.movie.academy.ui.reader
 
 import com.movie.academy.data.ContentEntity
+import com.movie.academy.data.source.AcademyRepository
 import com.movie.academy.utils.DataDummy
 import org.junit.Test
 
 import org.junit.Assert.*
 import org.junit.Before
+import org.junit.runner.RunWith
+import org.mockito.Mock
+import org.mockito.Mockito.`when`
+import org.mockito.Mockito.verify
+import org.mockito.junit.MockitoJUnitRunner
 
+@RunWith(MockitoJUnitRunner::class)
 class CourseReaderViewModelTest {
 
     private lateinit var viewModel: CourseReaderViewModel
@@ -15,9 +22,12 @@ class CourseReaderViewModelTest {
     private val modules = DataDummy.generateDummyModules(courseId)
     private val moduleId = modules[0].moduleId
 
+    @Mock
+    private lateinit var academyRepository: AcademyRepository
+
     @Before
     fun setUp() {
-        viewModel = CourseReaderViewModel()
+        viewModel = CourseReaderViewModel(academyRepository)
         viewModel.setSelectedCourse(courseId)
         viewModel.setSelectedModule(moduleId)
 
@@ -26,14 +36,18 @@ class CourseReaderViewModelTest {
 
     @Test
     fun getModules() {
+        `when`(academyRepository.getAllModulesByCourse(courseId)).thenReturn(modules)
         val modules = viewModel.getModules()
+        verify(academyRepository).getAllModulesByCourse(courseId)
         assertNotNull(modules)
         assertEquals(this.modules.size, modules.size)
     }
 
     @Test
     fun getSelectedModule() {
+        `when`(academyRepository.getContent(courseId, moduleId)).thenReturn(modules[0])
         val module = viewModel.getSelectedModule()
+        verify(academyRepository).getContent(courseId, moduleId)
         assertNotNull(module)
         assertEquals(modules[0], module)
 

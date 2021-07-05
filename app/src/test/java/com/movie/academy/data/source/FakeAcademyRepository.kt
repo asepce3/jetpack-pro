@@ -5,17 +5,7 @@ import com.movie.academy.data.CourseEntity
 import com.movie.academy.data.ModuleEntity
 import com.movie.academy.data.source.remote.RemoteDataSource
 
-class AcademyRepository private constructor(private val remoteDataSource: RemoteDataSource) : AcademyDataSource {
-
-    companion object {
-        @Volatile
-        private var instance: AcademyRepository? = null
-
-        fun getInstance(remoteDataSource: RemoteDataSource): AcademyRepository =
-            instance ?: synchronized(this) {
-                instance ?: AcademyRepository(remoteDataSource).apply { instance = this }
-            }
-    }
+class FakeAcademyRepository(private val remoteDataSource: RemoteDataSource) : AcademyDataSource {
 
     override fun getAllCourses(): List<CourseEntity> {
         val courseResponses = remoteDataSource.getAllCourses()
