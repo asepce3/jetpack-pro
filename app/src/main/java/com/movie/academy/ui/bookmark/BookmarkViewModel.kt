@@ -2,9 +2,9 @@ package com.movie.academy.ui.bookmark
 
 import androidx.lifecycle.ViewModel
 import com.movie.academy.data.CourseEntity
-import com.movie.academy.utils.DataDummy
+import com.movie.academy.data.source.AcademyRepository
 
-class BookmarkViewModel : ViewModel() {
+class BookmarkViewModel(private val academyRepository: AcademyRepository) : ViewModel() {
 
-    fun getBookmarks(): List<CourseEntity> = DataDummy.generateDummyCourses()
+    fun getBookmarks(): List<CourseEntity> = academyRepository.getBookmarkedCourses()
 }

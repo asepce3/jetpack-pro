@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.movie.academy.data.ModuleEntity
 import com.movie.academy.databinding.FragmentModuleContentBinding
 import com.movie.academy.ui.reader.CourseReaderViewModel
+import com.movie.academy.viewmodel.ViewModelFactory
 
 class ModuleContentFragment : Fragment() {
 
@@ -32,7 +33,8 @@ class ModuleContentFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         if (activity != null) {
-            viewModel = ViewModelProvider(requireActivity(), ViewModelProvider.NewInstanceFactory())[CourseReaderViewModel::class.java]
+            val factory = ViewModelFactory.getInstance(requireActivity())
+            viewModel = ViewModelProvider(requireActivity(), factory)[CourseReaderViewModel::class.java]
 
             val content = viewModel.getSelectedModule()
             populateWebView(content)

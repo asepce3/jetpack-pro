@@ -14,6 +14,7 @@ import com.movie.academy.data.CourseEntity
 import com.movie.academy.databinding.ActivityDetailCourseBinding
 import com.movie.academy.databinding.ContentDetailCourseBinding
 import com.movie.academy.ui.reader.CourseReaderActivity
+import com.movie.academy.viewmodel.ViewModelFactory
 
 class DetailCourseActivity : AppCompatActivity() {
 
@@ -33,7 +34,8 @@ class DetailCourseActivity : AppCompatActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        val viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[DetailCourseViewModel::class.java]
+        val factory = ViewModelFactory.getInstance(this)
+        val viewModel = ViewModelProvider(this, factory)[DetailCourseViewModel::class.java]
         val adapter = DetailCourseAdapter()
         val extras = intent.extras
         if (extras != null) {
