@@ -1,11 +1,15 @@
 package com.movie.academy.data.source.remote
 
+import android.os.Handler
+import android.os.Looper
 import com.movie.academy.data.source.remote.response.ContentResponse
 import com.movie.academy.data.source.remote.response.CourseResponse
 import com.movie.academy.data.source.remote.response.ModuleResponse
 import com.movie.academy.utils.JsonHelper
 
 class RemoteDataSource private constructor(private val jsonHelper: JsonHelper) {
+
+    private val handler = Handler(Looper.getMainLooper())
 
     companion object {
         @Volatile
@@ -17,9 +21,36 @@ class RemoteDataSource private constructor(private val jsonHelper: JsonHelper) {
             }
     }
 
-    fun getAllCourses(): List<CourseResponse> = jsonHelper.loadCourses()
+    fun getAllCourses(callback: LoadCoursesCallback) {
+        handler.post {
+            callback.onAllCoursesReceived(jsonHelper.loadCourses())
+        }
+    }
 
-    fun getModules(courseId: String): List<ModuleResponse> = jsonHelper.loadModule(courseId)
 
-    fun getContent(moduleId: String): ContentResponse = jsonHelper.loadContent(moduleId)
+    fun getModules(courseId: String, callback: LoadModuleCallback) {
+        handler.post {
+            callback.onAllModulesReceived(jsonHelper.loadModule(courseId))
+        }
+    }
+
+
+    fun getContent(moduleId: String, callback: LoadContentCallback) {
+        handler.post {
+            callback.onContentReceived(jsonHelper.loadContent(moduleId))
+        }
+    }
+
+
+    interface LoadCoursesCallback {
+        fun onAllCoursesReceived(courseResponses: List<CourseResponse>)
+    }
+
+    interface LoadModuleCallback {
+        fun onAllModulesReceived(moduleResponses: List<ModuleResponse>)
+    }
+
+    interface LoadContentCallback {
+        fun onContentReceived(contentResponses: ContentResponse)
+    }
 }
