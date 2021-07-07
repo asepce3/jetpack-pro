@@ -50,6 +50,7 @@ class DetailCourseActivity : AppCompatActivity() {
                     activityDetailCourseBinding.content.visibility = View.VISIBLE
 
                     adapter.setModules(modules)
+                    adapter.notifyDataSetChanged()
                 })
                 viewModel.getCourse().observe(this, { course ->
                     populateCourse(course)
@@ -59,7 +60,7 @@ class DetailCourseActivity : AppCompatActivity() {
 
         with(detailContentBinding.rvModule) {
             isNestedScrollingEnabled = false
-            layoutManager = LinearLayoutManager(context)
+            layoutManager = LinearLayoutManager(this@DetailCourseActivity)
             setHasFixedSize(true)
             this.adapter = adapter
             val dividerItemDecoration = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
