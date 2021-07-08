@@ -5,6 +5,7 @@ import android.os.Looper
 import com.movie.academy.data.source.remote.response.ContentResponse
 import com.movie.academy.data.source.remote.response.CourseResponse
 import com.movie.academy.data.source.remote.response.ModuleResponse
+import com.movie.academy.utils.EspressoIdlingResource
 import com.movie.academy.utils.JsonHelper
 
 class RemoteDataSource private constructor(private val jsonHelper: JsonHelper) {
@@ -22,22 +23,28 @@ class RemoteDataSource private constructor(private val jsonHelper: JsonHelper) {
     }
 
     fun getAllCourses(callback: LoadCoursesCallback) {
+        EspressoIdlingResource.increment()
         handler.post {
             callback.onAllCoursesReceived(jsonHelper.loadCourses())
+            EspressoIdlingResource.decrement()
         }
     }
 
 
     fun getModules(courseId: String, callback: LoadModuleCallback) {
+        EspressoIdlingResource.increment()
         handler.post {
             callback.onAllModulesReceived(jsonHelper.loadModule(courseId))
+            EspressoIdlingResource.decrement()
         }
     }
 
 
     fun getContent(moduleId: String, callback: LoadContentCallback) {
+        EspressoIdlingResource.increment()
         handler.post {
             callback.onContentReceived(jsonHelper.loadContent(moduleId))
+            EspressoIdlingResource.decrement()
         }
     }
 
